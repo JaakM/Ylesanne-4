@@ -40,7 +40,7 @@ while not gameover:  #seni kaua kuni ei ole gameover toimub alljärgnev loop
         if sisend.type == pygame.QUIT:  # kui sisendi tüüp on võrdne pygame quitiga
             sys.exit()  # siis mängust väljutakse
 
-    game_font = pygame.font.Font("freesansbold.ttf", 22)
+    game_font = pygame.font.Font("freesansbold.ttf", 22)    #omistan muutujale "game_font" fondi freesansbold, 22px
     text = game_font.render("SKOOR: " + str(skoor), True, [0, 0, 0])  #  str() asemel on võimalik kasutada ka f{} .
     screen.blit(text, (5,20))   #kuvan blitiga screen peale muutuja "text", asukohaks ekraanil on x=5px ja y=20px
 
@@ -57,14 +57,15 @@ while not gameover:  #seni kaua kuni ei ole gameover toimub alljärgnev loop
         teeX = random.randint(0, 0)  # panen kordinaadid, mille piires X teljel võib tee ilmuda ehk liikuda
         teeY = random.randint(0, 480)  # panen kordinaadid, mille piires Y teljel võib tee ilmuda ehk liikuda, teglikult ei olegi vaja kuni 480 liiguatda, piisab kui juba 50px liigatada, jääb mulje, et tee liigub. Randomiga programm ise veel ka mudab seda tee uuesti ilmumise vahemikku.
         #teglikult peaks saama natuke lihtsama lahenduse teha liikuvatee jaoks. Vaja on ju muuta ainult y-telje kordinaate ja mingit randomit ei ole ju ülesandes selle kohta nõutud, võib muutuda ka konstantselt!
-        speed = random.randint(1, 3)  # kui neid muuta, siis saab tee pannna erineva kiirusega liikuma (arvud määravad kiiruste vahemiku (vahemiku kust arvuti võtab audoele kiirused), kui arvud on samad, siis mõlemal autol sama kiirus).
-        c2.append([teeX, teeY, speed])
+        speed = random.randint(1, 3)  # need arvud määravad kiiruste vahemiku (vahemiku kust arvuti võtab audoele kiirused).
+        c2.append([teeX, teeY, speed]) #lisan listi c2 apeendiga teeX, teeY, speed
 
     for t in range(len(coords)):
         liikuvtee = pygame.image.load("taust.jpg")  #laadin tee pildija panen ta võrduma liikuvatee-ga
 
-        screen.blit(liikuvtee, [0, (c2[t][1])])  #panen screen.blit-iga sinise auto ehk a ekraaanile ja määran auto kordinaadid, kus coords[i](0) on x telje kordinaatide vahemik ja coords[i](1) on Y-telje kordinaatide vahemik
-        c2[t][1] += c2[t][2]   #kui üleval pool kiirusele ka vahemik anda, siis hakkab lisaks autodele ka tee kohati erineva kiirusega liikuma, paneks teele mingi teistsuguse muutuja nimetuse kui autodel on annaks ainult konstanse kiiruse?'''
+        screen.blit(liikuvtee, [0, (c2[t][1])])  #panen screen.blit-iga liikuva tee pildi ehk muutuja "liikuvtee"
+        # ekraaanile ja määran selle kordinaadid, kus c2[i](0) on x telje kordinaatide vahemik ja c2[i](1) on Y-telje kordinaatide vahemik
+        c2[t][1] += c2[t][2]
 
 
     #punane auto ja sinised autod peavad olema peale tausta, muidu taust kleebitakse nende peale ja ei näe peale tausta midagi!
